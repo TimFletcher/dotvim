@@ -58,17 +58,18 @@ set relativenumber                " Relative line numbers
 " --- Searching ---
 " -----------------
 
-nnoremap / /\v                    " Use Perl/Python regexes
-vnoremap / /\v                    " Use Perl/Python regexes
-set ignorecase                    " Do all searches in lowercase...
+" use perl/python regexes
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase                    " do all searches in lowercase...
 set smartcase                     " ...unless there's uppercase characters
 set gdefault                      " Always substitute globally on a line (To only replace the first instance, add /g at the end)
 set incsearch                     " Highlight search patterns while typing
 set showmatch                     " Jump to show matching brackets
 set hlsearch                      " Highlight previous search pattern
-nnoremap <leader><space> :noh<cr> " Quickly clear out search highlighting
-nnoremap <tab> %                  " Match bracket pairs with tab key
-vnoremap <tab> %                  " Match bracket pairs with tab key
+
+" Quickly clear out search highlighting
+nnoremap <leader><space> :noh<cr> 
 
 " --------------------------
 " --- Soft/Hard Wrapping ---
@@ -103,7 +104,7 @@ set laststatus=2                   " Always hide the statusline
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    let curdir = substitute(getcwd(), '/Users/tim/', "~/", "g")
     return curdir
 endfunction
 
@@ -128,26 +129,6 @@ if has("gui_running")
     set guioptions-=L                 " Disable scrollbars in NERDTree
     hi ColorColumn guibg=#3d3d3d
 endif 
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Parenthesis/bracket expanding
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-"vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-"vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-"vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-"vnoremap $q <esc>`>a'<esc>`<i'<esc>
-"vnoremap $e <esc>`>a"<esc>`<i"<esc>
-
-" Map auto complete of (, ", ', [
-"inoremap $1 ()<esc>i
-"inoremap $2 []<esc>i
-"inoremap $3 {}<esc>i
-"inoremap $4 {<esc>o}<esc>O
-"inoremap $q ''<esc>i
-"inoremap $e ""<esc>i
-"inoremap $t <><esc>i
 
 " Navigate previous and next in the quickfix window (for use with :vimgrep)
 nnoremap ]q :cnext<cr>
@@ -179,6 +160,10 @@ au FocusLost * :wa
 
 " NERDTree shortcut
 nmap <silent> <c-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$']
+
+" NerdCommenter
+"<leader>c<space>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -190,13 +175,13 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 vnoremap <f5> :!python<CR>
 
 " File type detection, mostly for Snipmate
-au BufRead,BufNewFile *.html set filetype=html.htmldjango
-au BufRead,BufNewFile *.htm set filetype=html.htmldjango
-au BufRead,BufNewFile *.py set filetype=python.django
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+"au BufRead,BufNewFile *.html set filetype=html.htmldjango
+"au BufRead,BufNewFile *.htm set filetype=html.htmldjango
+"au BufRead,BufNewFile *.py set filetype=python.django
+"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 " Omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
