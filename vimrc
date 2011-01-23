@@ -147,14 +147,15 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
-nnoremap j gj
-nnoremap k gk
-inoremap jj <ESC>                 " Use jj instead of escape to exit insert mode
-nnoremap <C-h> <C-w>h             " Window navigation
-nnoremap <C-j> <C-w>j             " Window navigation
-nnoremap <C-k> <C-w>k             " Window navigation
-nnoremap <C-l> <C-w>l             " Window navigation
-
+"nnoremap j gj
+"nnoremap k gk
+" use jj instead of escape to exit insert mode
+"noremap jj <esc>                 
+" Window navigation using hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 " Save when losing focus
 au FocusLost * :wa
 
@@ -177,11 +178,20 @@ vnoremap <f5> :!python<CR>
 " File type detection, mostly for Snipmate
 "au BufRead,BufNewFile *.html set filetype=html.htmldjango
 "au BufRead,BufNewFile *.htm set filetype=html.htmldjango
-"au BufRead,BufNewFile *.py set filetype=python.django
+au BufRead,BufNewFile *.py set filetype=python.django
 "au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
-" Omnicomplete
+" --------------------
+" --- Omnicomplete ---
+" --------------------
+
+imap <c-space> <c-x><c-o>
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+if filereadable($VIRTUAL_ENV . '/.vimrc')
+    source $VIRTUAL_ENV/.vimrc
+endif
+
