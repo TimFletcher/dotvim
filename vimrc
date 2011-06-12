@@ -35,10 +35,10 @@ set ttyfast                       " Performance improvement (with remote termina
 set ruler                         " Show cursor position.
 set backspace=indent,eol,start    " Intuitive backspacing.
 set relativenumber                " Relative line numbers
+set nojoinspaces                  " Remove spaces when joining lines
 
 "set undofile                      " Create undo files for undo history after closing/opening a file
 "syntax enable                     " Turn on syntax highlighting.
-"set nojoinspaces                  " Remove spaces when joining lines
 "runtime macros/matchit.vim        " Load the matchit plugin.
 "set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
 "set list listchars=tab:›\ ,trail:·,eol:¬ " mark trailing white space
@@ -70,6 +70,9 @@ set hlsearch                      " Highlight previous search pattern
 
 " Quickly clear out search highlighting
 nnoremap <leader><space> :noh<cr> 
+
+" Hit escape to clear a search
+" :nnoremap <esc> :noh<return><esc>
 
 " --------------------------
 " --- Soft/Hard Wrapping ---
@@ -156,12 +159,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" Save when losing focus
-au FocusLost * :wa
 
 " NERDTree shortcut
-nmap <silent> <c-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$']
+" nmap <silent> <c-n> :NERDTreeToggle<CR>
+" let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$']
 
 " NerdCommenter
 "<leader>c<space>
@@ -176,10 +177,15 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 vnoremap <f5> :!python<CR>
 
 " File type detection, mostly for Snipmate
-"au BufRead,BufNewFile *.html set filetype=html.htmldjango
-"au BufRead,BufNewFile *.htm set filetype=html.htmldjango
+au BufRead,BufNewFile *.html set filetype=html.htmldjango
+au BufRead,BufNewFile *.htm set filetype=html.htmldjango
 au BufRead,BufNewFile *.py set filetype=python.django
-"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+au BufRead,BufNewFile *.rb set filetype=ruby.ruby-rails.ruby-rspec.ruby-factorygirl
+"au BufRead,BufNewFile *.html.erb set filetype=html.eruby.eruby-rails
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+"autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+"autocmd FileType eruby set ft=html.eruby.eruby-rails
 
 " --------------------
 " --- Omnicomplete ---
@@ -194,4 +200,3 @@ imap <c-space> <c-x><c-o>
 if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
-
