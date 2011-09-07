@@ -21,6 +21,9 @@ set expandtab                     " Use spaces instead of tabs
 " --- Basic Options ---
 " ---------------------
 
+syntax enable                     " Turn on syntax highlighting.
+set background=dark
+colorscheme solarized
 set encoding=utf-8                " Use UTF-8 everywhere.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 set autoindent                    " Next line has same indentation as previous line
@@ -29,26 +32,23 @@ set showcmd                       " Display incomplete commands.
 set hidden                        " Handle multiple buffers better.
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
-set visualbell                    " No beeping.
-set cursorline                    " Highlights current line
+set backspace=indent,eol,start    " Intuitive backspacing.
+set nojoinspaces                  " Remove spaces when joining lines
 set ttyfast                       " Performance improvement (with remote terminals?)
 set ruler                         " Show cursor position.
-set backspace=indent,eol,start    " Intuitive backspacing.
-set relativenumber                " Relative line numbers
-set nojoinspaces                  " Remove spaces when joining lines
+set visualbell                    " No beeping.
+set number                        " Show line numbers.
 
+"set cursorline                    " Highlights current line
 "set undofile                      " Create undo files for undo history after closing/opening a file
-"syntax enable                     " Turn on syntax highlighting.
-"runtime macros/matchit.vim        " Load the matchit plugin.
 "set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
 "set list listchars=tab:›\ ,trail:·,eol:¬ " mark trailing white space
 "set ignorecase                    " Case-insensitive searching.
 "set smartcase                     " But case-sensitive if expression contains a capital letter.
-"set number                        " Show line numbers.
 "set incsearch                     " Highlight matches as you type.
 "set hlsearch                      " Highlight matches.
 "set title                         " Set the terminal's title
-"set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
+set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
 "set nobackup                      " Don't make a backup before overwriting a file.
 "set nowritebackup                 " And again.
 "set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
@@ -58,8 +58,8 @@ set nojoinspaces                  " Remove spaces when joining lines
 " --- Searching ---
 " -----------------
 
-" use perl/python regexes
-nnoremap / /\v
+
+nnoremap / /\v                    " use perl/python regexes
 vnoremap / /\v
 set ignorecase                    " do all searches in lowercase...
 set smartcase                     " ...unless there's uppercase characters
@@ -67,12 +67,7 @@ set gdefault                      " Always substitute globally on a line (To onl
 set incsearch                     " Highlight search patterns while typing
 set showmatch                     " Jump to show matching brackets
 set hlsearch                      " Highlight previous search pattern
-
-" Quickly clear out search highlighting
-nnoremap <leader><space> :noh<cr> 
-
-" Hit escape to clear a search
-" :nnoremap <esc> :noh<return><esc>
+nnoremap <leader><space> :noh<cr> " Quickly clear out search highlighting
 
 " --------------------------
 " --- Soft/Hard Wrapping ---
@@ -119,50 +114,23 @@ function! HasPaste()
     endif
 endfunction
 
-" --------------
-" --- MacVim ---
-" --------------
-
-if has("gui_running") 
-    set guifont=LuxiMono:h12          " Font family and font size.
-    set antialias                     " MacVim: smooth fonts.
-    set guioptions-=T                 " Hide toolbar.
-    colorscheme railscasts            " Colourscheme!
-    set guioptions-=r                 " Don't show right scrollbar
-    set guioptions-=L                 " Disable scrollbars in NERDTree
-    hi ColorColumn guibg=#3d3d3d
-endif 
-
-" Navigate previous and next in the quickfix window (for use with :vimgrep)
-nnoremap ]q :cnext<cr>
-nnoremap [q :cprevious<cr>
 
 " ---------------------------
 " --- Custom key mappings ---
 " ---------------------------
 
-" Turn off cursor keys
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-"nnoremap j gj
-"nnoremap k gk
-" use jj instead of escape to exit insert mode
-"noremap jj <esc>                 
-" Window navigation using hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" NERDTree shortcut
-" nmap <silent> <c-n> :NERDTreeToggle<CR>
-" let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$']
+inoremap <Up>    <NOP>              " Turn off cursor keys
+inoremap <Down>  <NOP>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+noremap  <Up>    <NOP>
+noremap  <Down>  <NOP>
+noremap  <Left>  <NOP>
+noremap  <Right> <NOP>
+nnoremap <C-h>   <C-w>h             " Window navigation using hjkl
+nnoremap <C-j>   <C-w>j
+nnoremap <C-k>   <C-w>k
+nnoremap <C-l>   <C-w>l
 
 " NerdCommenter
 "<leader>c<space>
@@ -196,7 +164,3 @@ imap <c-space> <c-x><c-o>
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-if filereadable($VIRTUAL_ENV . '/.vimrc')
-    source $VIRTUAL_ENV/.vimrc
-endif

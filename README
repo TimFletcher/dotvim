@@ -1,11 +1,14 @@
+I personally use this with the terminal version of Vim on OS X Lion. I had to recompile Vim to enable ruby support using the guide here:
+
+http://brilliantcorners.org/2011/02/building-vim-on-osx-snow-leopard/#comment-299516619
+
 Installation:
 
-    git clone git://github.com/timfletcher/dotvim.git ~/.vim
+    git clone git://github.com/TimFletcher/dotvim.git ~/.vim
 
 Create symlinks:
 
     ln -s ~/.vim/vimrc ~/.vimrc
-    ln -s ~/.vim/gvimrc ~/.gvimrc
 
 Switch to the `~/.vim` directory, and fetch submodules:
 
