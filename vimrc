@@ -58,8 +58,8 @@ set directory=/tmp/               " Set temporary directory (don't litter local 
 " --- Searching ---
 " -----------------
 
-
-nnoremap / /\v                    " use perl/python regexes
+" use perl/python regexes
+nnoremap / /\v
 vnoremap / /\v
 set ignorecase                    " do all searches in lowercase...
 set smartcase                     " ...unless there's uppercase characters
