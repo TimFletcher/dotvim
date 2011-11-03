@@ -52,7 +52,7 @@ set directory=/tmp/               " Set temporary directory (don't litter local 
 "set nobackup                      " Don't make a backup before overwriting a file.
 "set nowritebackup                 " And again.
 "set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-"set wildignore=*.pyc,*.sqlite3,*.db
+set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.gif,*.png
 
 " -----------------
 " --- Searching ---

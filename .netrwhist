@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/tim/Dropbox/Sites/onelist-rails-3.1/app'
 let g:netrw_dirhist_2='/Users/tim/Dropbox/Sites/onelist-rails-3.1/app/controllers'
 let g:netrw_dirhist_3='/Users/tim/Dropbox/Sites/onelist-rails/test/unit/mailers'
+let g:netrw_dirhist_4='/Users/apollo/Sites/pfu'
+let g:netrw_dirhist_5='/Users/apollo/Sites/pfu_heroku/pfu'
+let g:netrw_dirhist_6='/Users/apollo/Sites/cer'
+let g:netrw_dirhist_7='/Users/apollo/Sites/eea/requirements'
