@@ -38,28 +38,28 @@ set ttyfast                       " Performance improvement (with remote termina
 set ruler                         " Show cursor position.
 set visualbell                    " No beeping.
 set number                        " Show line numbers.
+set cursorline                    " Highlights current line
+set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
+set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.png,*.gif,*.eot,*.svg,*.ttf,*.woff,*.ico
 
-"set cursorline                    " Highlights current line
+set paste                         " Return to sanity with pasting from OS X clipboard
 "set undofile                      " Create undo files for undo history after closing/opening a file
-"set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
+set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
 "set list listchars=tab:›\ ,trail:·,eol:¬ " mark trailing white space
 "set ignorecase                    " Case-insensitive searching.
 "set smartcase                     " But case-sensitive if expression contains a capital letter.
 "set incsearch                     " Highlight matches as you type.
 "set hlsearch                      " Highlight matches.
 "set title                         " Set the terminal's title
-set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
 "set nobackup                      " Don't make a backup before overwriting a file.
 "set nowritebackup                 " And again.
-"set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-"set wildignore=*.pyc,*.sqlite3,*.db
 
 " -----------------
 " --- Searching ---
 " -----------------
 
-
-nnoremap / /\v                    " use perl/python regexes
+" use perl/python regexes
+nnoremap / /\v
 vnoremap / /\v
 set ignorecase                    " do all searches in lowercase...
 set smartcase                     " ...unless there's uppercase characters
@@ -77,7 +77,7 @@ set wrap                          " Turn on line wrapping.
 set linebreak                     " Don't break words on wrap
 set textwidth=79                  " Maximum width of text
 set formatoptions=qrn1
-set colorcolumn=85
+set colorcolumn=80                " Set coloured column at 80 characters
 command! -nargs=* Wrap set wrap linebreak nolist " Quickly turn on line wrapping
 
 " -------------------------
@@ -98,28 +98,14 @@ let g:mapleader = ","
 " --- Status Line ---
 " -------------------
 
-set laststatus=2                   " Always hide the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
-
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/tim/', "~/", "g")
-    return curdir
-endfunction
-
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    else
-        return ''
-    endif
-endfunction
-
+set laststatus=2                   " Always show the status line
+set statusline=\ %f%m%r%h\ %w\ Line:\ %l/%L:%c " Customise the status line
 
 " ---------------------------
 " --- Custom key mappings ---
 " ---------------------------
 
-inoremap <Up>    <NOP>              " Turn off cursor keys
+inoremap <Up>    <NOP>              " Turn off nasty cursor keys
 inoremap <Down>  <NOP>
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
@@ -132,9 +118,6 @@ nnoremap <C-j>   <C-w>j
 nnoremap <C-k>   <C-w>k
 nnoremap <C-l>   <C-w>l
 
-" NerdCommenter
-"<leader>c<space>
-
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
@@ -145,22 +128,11 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 vnoremap <f5> :!python<CR>
 
 " File type detection, mostly for Snipmate
-au BufRead,BufNewFile *.html set filetype=html.htmldjango
-au BufRead,BufNewFile *.htm set filetype=html.htmldjango
-au BufRead,BufNewFile *.py set filetype=python.django
-au BufRead,BufNewFile *.rb set filetype=ruby.ruby-rails.ruby-rspec.ruby-factorygirl
+"au BufRead,BufNewFile *.html set filetype=html.htmldjango
+"au BufRead,BufNewFile *.htm set filetype=html.htmldjango
+"au BufRead,BufNewFile *.py set filetype=python.django
+"au BufRead,BufNewFile *.rb set filetype=ruby.ruby-rails.ruby-rspec.ruby-factorygirl
+"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 "au BufRead,BufNewFile *.html.erb set filetype=html.eruby.eruby-rails
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-
 "autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 "autocmd FileType eruby set ft=html.eruby.eruby-rails
-
-" --------------------
-" --- Omnicomplete ---
-" --------------------
-
-imap <c-space> <c-x><c-o>
-"autocmd FileType python set omnifunc=pythoncomplete#Complete
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
