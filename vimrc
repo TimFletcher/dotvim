@@ -53,6 +53,8 @@ set clipboard=unnamed             " Allow yank etc to work with the OS X clipboa
 "set title                         " Set the terminal's title
 "set nobackup                      " Don't make a backup before overwriting a file.
 "set nowritebackup                 " And again.
+"set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.gif,*.png
 
 " -----------------
 " --- Searching ---
