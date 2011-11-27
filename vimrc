@@ -143,15 +143,6 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
-"au BufNewFile,BufReadPost *.coffee setl shiftwidth=2
-"autocmd BufRead,BufNewFile *.js,*.js.coffee,*.js.erb set tabstop=2 shiftwidth=2
+" Custom indentation for different file types
+autocmd BufRead,BufNewFile *.js,*.js.coffee,*.js.erb set tabstop=2 shiftwidth=2
 
-" File type detection, mostly for Snipmate
-"au BufRead,BufNewFile *.html set filetype=html.htmldjango
-"au BufRead,BufNewFile *.htm set filetype=html.htmldjango
-"au BufRead,BufNewFile *.py set filetype=python.django
-"au BufRead,BufNewFile *.rb set filetype=ruby.ruby-rails.ruby-rspec.ruby-factorygirl
-"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-"au BufRead,BufNewFile *.html.erb set filetype=html.eruby.eruby-rails
-"autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
-"autocmd FileType eruby set ft=html.eruby.eruby-rails
