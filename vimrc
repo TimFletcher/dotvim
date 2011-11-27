@@ -42,7 +42,7 @@ set cursorline                    " Highlights current line
 set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
 set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.png,*.gif,*.eot,*.svg,*.ttf,*.woff,*.ico
 
-set paste                         " Return to sanity with pasting from OS X clipboard
+"set paste                         " Return to sanity with pasting from OS X clipboard - This breaks indenting?!?!?!?
 "set undofile                      " Create undo files for undo history after closing/opening a file
 set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
 "set list listchars=tab:›\ ,trail:·,eol:¬ " mark trailing white space
@@ -128,6 +128,23 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " Execute currently selected lines as Python
 vnoremap <f5> :!python<CR>
+
+" Allow toggle of paste mode with F2
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+" Omnicomplete
+autocmd FileType ruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby let g:rubycomplete_buffer_loading=1
+autocmd FileType ruby let g:rubycomplete_classes_in_global=1
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+"au BufNewFile,BufReadPost *.coffee setl shiftwidth=2
+"autocmd BufRead,BufNewFile *.js,*.js.coffee,*.js.erb set tabstop=2 shiftwidth=2
 
 " File type detection, mostly for Snipmate
 "au BufRead,BufNewFile *.html set filetype=html.htmldjango
