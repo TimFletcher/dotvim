@@ -120,6 +120,9 @@ nnoremap <C-j>   <C-w>j
 nnoremap <C-k>   <C-w>k
 nnoremap <C-l>   <C-w>l
 
+:imap jj <Esc>
+
+
 " Command-T configuration
 let g:CommandTMaxHeight=20
 
