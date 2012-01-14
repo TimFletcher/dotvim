@@ -40,7 +40,7 @@ set visualbell                    " No beeping.
 set number                        " Show line numbers.
 set cursorline                    " Highlights current line
 set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
-set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.png,*.gif,*.eot,*.svg,*.ttf,*.woff,*.ico
+set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.png,*.gif,*.eot,*.svg,*.ttf,*.woff,*.ico,vendor/bundle/**
 
 "set paste                         " Return to sanity with pasting from OS X clipboard - This breaks indenting?!?!?!?
 "set undofile                      " Create undo files for undo history after closing/opening a file
@@ -54,7 +54,6 @@ set clipboard=unnamed             " Allow yank etc to work with the OS X clipboa
 "set nobackup                      " Don't make a backup before overwriting a file.
 "set nowritebackup                 " And again.
 "set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.gif,*.png
 
 " -----------------
 " --- Searching ---
@@ -75,12 +74,13 @@ nnoremap <leader><space> :noh<cr> " Quickly clear out search highlighting
 " --- Soft/Hard Wrapping ---
 " --------------------------
 
-set wrap                          " Turn on line wrapping.
-set linebreak                     " Don't break words on wrap
+set nowrap                        " Do not wrap on window width
+"set linebreak                     " Don't break words to wrap
 set textwidth=79                  " Maximum width of text
-set formatoptions=qrn1
+"set formatoptions=qrn1
 set colorcolumn=80                " Set coloured column at 80 characters
-command! -nargs=* Wrap set wrap linebreak nolist " Quickly turn on line wrapping
+"command! -nargs=* Wrap set wrap linebreak nolist " Quickly turn on line wrapping
+"set showbreak=>>>
 
 " -------------------------
 " --- Tabstops and EOLs ---
@@ -135,7 +135,6 @@ vnoremap <f5> :!python<CR>
 " Allow toggle of paste mode with F2
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-set showmode
 
 " Omnicomplete
 autocmd FileType ruby set omnifunc=rubycomplete#Complete
@@ -147,5 +146,5 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Custom indentation for different file types
-autocmd BufRead,BufNewFile *.js,*.js.coffee,*.js.erb set tabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.js,*.js.coffee,*.js.erb,*.html set tabstop=2 shiftwidth=2
 
