@@ -40,8 +40,12 @@ set visualbell                    " No beeping.
 set number                        " Show line numbers.
 set cursorline                    " Highlights current line
 set directory=/tmp/               " Set temporary directory (don't litter local dir with swp/tmp files)
-set wildignore=*.pyc,*.sqlite3,*.db,*.jpg,*.jpeg,*.png,*.gif,*.eot,*.svg,*.ttf,*.woff,*.ico,vendor/bundle/**
-
+set wildignore=*.pyc,*.sqlite3,*.db,
+set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.ico               " Images
+set wildignore+=*.eot,*.svg,*.ttf,*.woff                     " Fonts
+set wildignore+=*.DS_Store                                   " OS X
+set wildignore+=.git                                         " Version control
+set wildignore+=*/vendor/bundle/*                            " Rails
 "set paste                         " Return to sanity with pasting from OS X clipboard - This breaks indenting?!?!?!?
 "set undofile                      " Create undo files for undo history after closing/opening a file
 set clipboard=unnamed             " Allow yank etc to work with the OS X clipboard
@@ -120,11 +124,14 @@ nnoremap <C-j>   <C-w>j
 nnoremap <C-k>   <C-w>k
 nnoremap <C-l>   <C-w>l
 
-:imap jj <Esc>
-
+":imap jj <Esc>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
+
+" ctrlp.vim configuration
+let g:ctrlp_working_path_mode = 0
+nnoremap <c-b> :CtrlPBuffer<CR>
 
 " Simple buffer switching
 nnoremap <F5> :buffers<CR>:buffer<Space>
