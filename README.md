@@ -13,9 +13,3 @@ I personally use this with Macvim which I installed via homebrew with `brew inst
     cd ~/.vim
     git submodule init
     git submodule update
-
-## Build C extension for Command-T
-
-    cd ~/.vim/bundle/command-t/ruby/command-t/
-    ruby extconf.rb
-    make
